@@ -1,0 +1,10 @@
+{
+    "vim.disableAnnoyingNeovimMessage": true,
+    "vim.useSystemClipboard": true,
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Base16 Dark Oceanic Next",
+    "workbench.editor.enablePreview": false,
+    "editor.detectIndentation": true,
+    "files.trimTrailingWhitespace": true,
+    "editor.fontSize": 12,
+    "editor.fontFamily": "'Source Code Pro', Monaco, 'Courier New', monospace" }
