@@ -1,7 +1,9 @@
 #!/bin/bash
 
 which brew > /dev/null
-if [ $? -ne 0 ]; then
+export HAS_BREW=$?
+
+if [ $HAS_BREW -ne 0 ]; then
 	echo "Installing homebrew..."
 	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
@@ -14,8 +16,17 @@ fi
 
 if [ ! -d "$HOME/.oh-my-zsh/" ]; then
 	echo "Installing oh-my-zsh..."
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
+	
+	echo -n
 	ln -nsf ~/.dotfiles/zshrc ~/.zshrc
+
+	if [ -e "/usr/local/bin/zsh" ]; then
+		sudo sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
+		chsh -s /usr/local/bin/zsh
+	else
+		chsh -s /bin/zsh
+	fi
 fi
 
 if [ -d "$HOME/Library/Application Support/Code" ]; then
